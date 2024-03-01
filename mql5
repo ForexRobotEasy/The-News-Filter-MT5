@@ -1,0 +1,129 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                            The News Filter MT5  |
+//|                                      Developer: Forex Robot Easy Team |
+//|                                      Website: forexroboteasy.com |
+//+------------------------------------------------------------------+
+
+// Import necessary libraries
+#include <Trade\Trade.mqh>
+#include <WebRequest\WebRequest.mqh>
+#include <ForexFactory\FFC.mqh>
+
+// Define constants
+#define MAX_CURRENCY_PAIRS 10
+#define MAX_KEYWORDS 5
+
+//+------------------------------------------------------------------+
+//|                        Expert initialization function                         |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Initialize order management system
+   InitializeOrderManagement();
+   
+   // Connect to Forex Factory's economic calendar
+   if(!ConnectToForexFactory())
+   {
+      Print('Failed to connect to Forex Factory');
+      return INIT_FAILED;
+   }
+   
+   return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//|                     Expert deinitialization function                        |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   // Disconnect from Forex Factory's economic calendar
+   DisconnectFromForexFactory();
+   
+   // Deinitialize order management system
+   DeinitializeOrderManagement();
+}
+
+//+------------------------------------------------------------------+
+//|                          Expert tick function                                 |
+//+------------------------------------------------------------------+
+void OnTick()
+{
+   // Check if it's news time
+   if(IsNewsTime())
+   {
+      // Filter expert advisors and manual charts
+      FilterCharts();
+      
+      // Handle open positions and pending orders
+      ManageOrders();
+      
+      // Exit the expert advisor gracefully
+      ExpertRemove();
+   }
+}
+
+//+------------------------------------------------------------------+
+//|                 Function to initialize order management system        |
+//+------------------------------------------------------------------+
+void InitializeOrderManagement()
+{
+   // Code for initializing the order management system
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//|               Function to connect to Forex Factory's economic calendar    |
+//+------------------------------------------------------------------+
+bool ConnectToForexFactory()
+{
+   // Code for connecting to Forex Factory's economic calendar
+   // ...
+   return true; // Return true if connection is successful, otherwise false
+}
+
+//+------------------------------------------------------------------+
+//|              Function to disconnect from Forex Factory's economic calendar  |
+//+------------------------------------------------------------------+
+void DisconnectFromForexFactory()
+{
+   // Code for disconnecting from Forex Factory's economic calendar
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//|                         Function to check if it's news time                |
+//+------------------------------------------------------------------+
+bool IsNewsTime()
+{
+   // Code for checking if it's news time
+   // ...
+   return true; // Return true if it's news time, otherwise false
+}
+
+//+------------------------------------------------------------------+
+//|                      Function to filter expert advisors and charts       |
+//+------------------------------------------------------------------+
+void FilterCharts()
+{
+   // Code for filtering expert advisors and charts
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//|                  Function to handle open positions and pending orders |
+//+------------------------------------------------------------------+
+void ManageOrders()
+{
+   // Code for handling open positions and pending orders
+   // ...
+}
+
+//+------------------------------------------------------------------+
+//|                             Function to remove the expert advisor       |
+//+------------------------------------------------------------------+
+void ExpertRemove()
+{
+   // Code for removing the expert advisor
+   // ...
+}
